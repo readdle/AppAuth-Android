@@ -4,7 +4,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 apply from: '../config/android-common.gradle'
 
-group = "net.openid"
+group = "com.readdle.android"
 version = rootProject.versionName
 
 android.defaultConfig.project.archivesBaseName = 'appauth'
@@ -40,10 +40,10 @@ bintray {
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_KEY")
     pkg {
-        repo = "net.openid"
+        repo = "maven"
         name = "appauth"
         desc = "AppAuth for Android"
-        userOrg = "openid"
+        userOrg = "readdle"
         licenses = ["Apache-2.0"]
         websiteUrl = "https://openid.github.io/AppAuth-Android/"
         issueTrackerUrl = "https://github.com/openid/AppAuth-Android/issues"
