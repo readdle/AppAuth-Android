@@ -26,6 +26,7 @@ import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
+import android.util.Log;
 
 import net.openid.appauth.internal.Logger;
 import net.openid.appauth.internal.UriUtil;
@@ -81,7 +82,13 @@ public class CustomTabManager {
             public void onCustomTabsServiceConnected(ComponentName componentName,
                                                      CustomTabsClient customTabsClient) {
                 Logger.debug("CustomTabsService is connected");
-                customTabsClient.warmup(0);
+                try {
+                    customTabsClient.warmup(0);
+                }
+                catch (Exception e) {
+                    // Some browsers crashed at warmup -> just skip it
+                    Log.e(CustomTabManager.class.getName(), "Warm up exception:", e);
+                }
                 setClient(customTabsClient);
             }
 
